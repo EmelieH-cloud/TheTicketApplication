@@ -11,7 +11,7 @@ namespace AppLogic.Services.TicketServices
             BaseAddress = new Uri("https://localhost:7249/")
         };
 
-        public async Task<List<TicketModel>> GetTickets()
+        public async Task<List<TicketApiModel>> GetTickets()
         {
             var response = await Client.GetAsync("tickets");
 
@@ -19,7 +19,7 @@ namespace AppLogic.Services.TicketServices
             {
                 string ticketjson = await response.Content.ReadAsStringAsync();
 
-                List<TicketModel>? tickets = JsonConvert.DeserializeObject<List<TicketModel>>(ticketjson);
+                List<TicketApiModel>? tickets = JsonConvert.DeserializeObject<List<TicketApiModel>>(ticketjson);
 
                 if (tickets != null)
                 {
@@ -34,7 +34,7 @@ namespace AppLogic.Services.TicketServices
 
 
 
-        public async Task PostTicket(TicketModel ticket)
+        public async Task PostTicket(TicketApiModel ticket)
         {
             await Client.PostAsJsonAsync("tickets", ticket);
         }

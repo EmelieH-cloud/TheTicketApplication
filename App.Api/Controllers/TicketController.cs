@@ -9,9 +9,9 @@ namespace App.Api.Controllers
     public class TicketController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly GenericRepo<TicketModel> _ticketRepo;
+        private readonly GenericRepo<TicketApiModel> _ticketRepo;
 
-        public TicketController(AppDbContext context, GenericRepo<TicketModel> ticketRepo)
+        public TicketController(AppDbContext context, GenericRepo<TicketApiModel> ticketRepo)
         {
             _context = context;
             _ticketRepo = ticketRepo;
@@ -19,7 +19,7 @@ namespace App.Api.Controllers
 
 
         [HttpGet("Tickets")]
-        public ActionResult<List<TicketModel>> GetTickets()
+        public ActionResult<List<TicketApiModel>> GetTickets()
         {
             var tickets = _ticketRepo.GetAll();
             return Ok(tickets);
@@ -28,7 +28,7 @@ namespace App.Api.Controllers
 
 
         [HttpPost("Ticket")]
-        public ActionResult PostTicket(TicketModel ticket)
+        public ActionResult PostTicket(TicketApiModel ticket)
         {
             if (ticket != null)
             {

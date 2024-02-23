@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Shared.Models;
 using System.Net.Http.Json;
+using static Shared.Models.ApiModels;
 
 namespace AppLogic.Services.ResponseServices
 {
@@ -12,15 +12,15 @@ namespace AppLogic.Services.ResponseServices
         };
 
 
-        public async Task<List<ResponseModel>> GetResponses()
+        public async Task<List<ResponseAPIModel>> GetResponses()
         {
             var response = await Client.GetAsync("Responses");
 
             if (response.IsSuccessStatusCode)
             {
-                string ticketjson = await response.Content.ReadAsStringAsync();
+                string responseInjson = await response.Content.ReadAsStringAsync();
 
-                List<ResponseModel>? responses = JsonConvert.DeserializeObject<List<ResponseModel>>(ticketjson);
+                List<ResponseAPIModel>? responses = JsonConvert.DeserializeObject<List<ResponseAPIModel>>(responseInjson);
 
                 if (responses != null)
                 {
@@ -33,7 +33,7 @@ namespace AppLogic.Services.ResponseServices
             throw new HttpRequestException();
         }
 
-        public async Task PostResponse(ResponseModel response)
+        public async Task PostResponse(ResponseAPIModel response)
         {
             await Client.PostAsJsonAsync("responses", response);
         }

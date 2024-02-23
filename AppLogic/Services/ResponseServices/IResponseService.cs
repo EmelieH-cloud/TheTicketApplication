@@ -1,5 +1,4 @@
-﻿
-using Shared.Models;
+﻿using static Shared.Models.ApiModels;
 
 namespace AppLogic.Services.ResponseServices
 {
@@ -7,8 +6,8 @@ namespace AppLogic.Services.ResponseServices
     {
         public HttpClient Client { get; set; }
 
-        public Task<List<ResponseModel>> GetResponses();
+        public Task<List<ResponseAPIModel>> GetResponses();
 
-        public Task PostResponse(ResponseModel response);
+        public Task PostResponse(ResponseAPIModel response);
     }
 }

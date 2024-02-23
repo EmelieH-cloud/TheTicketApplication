@@ -10,7 +10,7 @@ namespace Shared.Models
 		public string Response { get; set; } = null!;
 		public string SubmittedBy { get; set; } = null!;
 		public int TicketId { get; set; }
-		public TicketModel Ticket { get; set; } = null!;
+		public TicketApiModel Ticket { get; set; } = null!;
 
 	}
 
@@ -24,7 +24,7 @@ namespace Shared.Models
     }
 
 
-	public class TicketModel
+	public class TicketApiModel
 	{
 		[Key]
 		public int Id { get; set; }
@@ -39,7 +39,7 @@ namespace Shared.Models
 	public class TicketTag
 	{
 		public int TicketId { get; set; }
-		public TicketModel Ticket { get; set; } = null!;
+		public TicketApiModel Ticket { get; set; } = null!;
 		public int TagId { get; set; }
 		public TagModel Tag { get; set; } = null!;
 

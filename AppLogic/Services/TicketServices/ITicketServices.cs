@@ -6,8 +6,8 @@ namespace AppLogic.Services.TicketServices
     {
         public HttpClient Client { get; set; }
 
-        public Task<List<TicketModel>> GetTickets();
+        public Task<List<TicketApiModel>> GetTickets();
 
-        public Task PostTicket(TicketModel ticket);
+        public Task PostTicket(TicketApiModel ticket);
     }
 }
