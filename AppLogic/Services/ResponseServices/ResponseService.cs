@@ -6,6 +6,7 @@ namespace AppLogic.Services.ResponseServices
 {
     public class ResponseService : IResponseService
     {
+        // Klass som gör anrop till API:et för att hämta data, deseralisera den och omvandla till en APImodell.  
         public HttpClient Client { get; set; } = new()
         {
             BaseAddress = new Uri("https://localhost:7249/")

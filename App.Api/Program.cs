@@ -30,7 +30,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-builder.Services.AddScoped<GenericRepo<TicketApiModel>>();
+builder.Services.AddScoped<GenericRepo<TicketModel>>();
 builder.Services.AddScoped<GenericRepo<ResponseModel>>();
 builder.Services.AddScoped<GenericRepo<TagModel>>();
 

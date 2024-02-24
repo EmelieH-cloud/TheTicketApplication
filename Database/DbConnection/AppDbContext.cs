@@ -11,7 +11,7 @@ namespace Database.DbConnection
 
         }
 
-        public DbSet<TicketApiModel> Tickets { get; set; }
+        public DbSet<TicketModel> Tickets { get; set; }
         public DbSet<TicketTag> TicketTag { get; set; }
         public DbSet<TagModel> Tags { get; set; }
         public DbSet<ResponseModel> Responses { get; set; }

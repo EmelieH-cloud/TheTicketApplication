@@ -1,4 +1,4 @@
-﻿using Shared.Models;
+﻿using static Shared.Models.ApiModels;
 
 namespace AppLogic.Services.TicketServices
 {
@@ -6,8 +6,8 @@ namespace AppLogic.Services.TicketServices
     {
         public HttpClient Client { get; set; }
 
-        public Task<List<TicketApiModel>> GetTickets();
+        public Task<List<TicketAPIModel>> GetTickets();
 
-        public Task PostTicket(TicketApiModel ticket);
+        public Task PostTicket(TicketAPIModel ticket);
     }
 }
