@@ -1,6 +1,6 @@
 ﻿using Database.DbConnection;
 using Microsoft.AspNetCore.Mvc;
-using static Shared.Models.ApiModels;
+using Shared.Models;
 
 namespace App.Api.Controllers
 {
@@ -9,9 +9,9 @@ namespace App.Api.Controllers
     public class TicketController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly GenericRepo<TicketAPIModel> _ticketRepo;
+        private readonly GenericRepo<TicketModel> _ticketRepo;
 
-        public TicketController(AppDbContext context, GenericRepo<TicketAPIModel> ticketRepo)
+        public TicketController(AppDbContext context, GenericRepo<TicketModel> ticketRepo)
         {
             _context = context;
             _ticketRepo = ticketRepo;
@@ -19,7 +19,7 @@ namespace App.Api.Controllers
 
 
         [HttpGet("Tickets")]
-        public ActionResult<List<TicketAPIModel>> GetTickets()
+        public ActionResult<List<TicketModel>> GetTickets()
         {
             var tickets = _ticketRepo.GetAll();
             return Ok(tickets);
@@ -28,7 +28,7 @@ namespace App.Api.Controllers
 
 
         [HttpPost("Ticket")]
-        public ActionResult PostTicket(TicketAPIModel ticket)
+        public ActionResult PostTicket(TicketModel ticket)
         {
             if (ticket != null)
             {
@@ -38,8 +38,6 @@ namespace App.Api.Controllers
 
             return BadRequest();
         }
-
-
 
 
         [HttpDelete("Ticket/{id}")]

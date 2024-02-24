@@ -57,8 +57,7 @@ namespace App.Api.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

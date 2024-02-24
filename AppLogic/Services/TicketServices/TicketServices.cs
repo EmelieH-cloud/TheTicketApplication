@@ -8,12 +8,12 @@ namespace AppLogic.Services.TicketServices
     { // Klass som gör anrop till API:et och försöker mappa json-strängarna mot API-modellen. 
         public HttpClient Client { get; set; } = new()
         {
-            BaseAddress = new Uri("https://localhost:7249/")
+            BaseAddress = new Uri("https://localhost:7249/api/")
         };
 
         public async Task<List<TicketAPIModel>> GetTickets()
         {
-            var response = await Client.GetAsync("tickets");
+            var response = await Client.GetAsync("Ticket/Tickets");
 
             if (response.IsSuccessStatusCode)
             {

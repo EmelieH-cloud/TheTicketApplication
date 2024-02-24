@@ -1,26 +1,59 @@
 ﻿@page "/"
 @using Shared.Models
-@inject IResponseService responseService
-@using AppLogic.Services.ResponseServices
+@inject ITicketServices ticketservice 
 @using AppLogic.Services.TicketServices
 @using Shared.Models.Shared.Models
 @using static Shared.Models.ApiModels
 
 
-@code {
+<h3>Tickets</h3>
 
-    private List<TicketAPIModel>? TicketAPImodel { get; set; }
-    public List<TicketViewModel>? TicketViewmodel { get; set; }
+@if (viewModelTickets != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in viewModelTickets)
+            {
+                <tr>
+                    <td>@ticket.Id</td>
+                    <td>@ticket.Title</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No tickets found</p>
+}
+
+@code {
+    List<TicketViewModel> viewModelTickets = new();
 
     protected override async Task OnInitializedAsync()
     {
-      
+        // Gör HTTP-request till API:et med serviceklassen. 
+        var apiTickets = await ticketservice.GetTickets();
 
+        // Om det gick att deseralisera till APImodellen, omvandla till viewmodeller. 
+        if (apiTickets !=null && apiTickets.Any())
+        {
+            foreach (var apiModel in apiTickets)
+            {
+                TicketViewModel viewmodel = TicketViewModel.TicketViewModelFromApiModel(apiModel);
+                // Lägg till i listan med viewmodels. 
+                viewModelTickets.Add(viewmodel);
+            }
+
+        }
+       
     }
-
 }
-
-    
-
     
 

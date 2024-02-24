@@ -1,6 +1,7 @@
 using Database.DbConnection;
 using Microsoft.EntityFrameworkCore;
 using Shared.Models;
+using static Shared.Models.ApiModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +34,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<GenericRepo<TicketModel>>();
 builder.Services.AddScoped<GenericRepo<ResponseModel>>();
 builder.Services.AddScoped<GenericRepo<TagModel>>();
-
+builder.Services.AddScoped<GenericRepo<TicketAPIModel>>();
 
 
 var app = builder.Build();
