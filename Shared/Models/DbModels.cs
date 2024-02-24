@@ -19,7 +19,7 @@ namespace Shared.Models
         public int Id { get; set; }
 
         public string Name { get; set; } = null!;
-        public List<TicketTag> TicketTags { get; set; } = new List<TicketTag>();
+        public List<TicketTagModel> TicketTags { get; set; } = new List<TicketTagModel>();
     }
 
 
@@ -31,11 +31,11 @@ namespace Shared.Models
         public string? Description { get; set; }
         public string SubmittedBy { get; set; } = null!;
         public bool IsResolved { get; set; }
-        public List<TicketTag> TicketTags { get; set; } = new List<TicketTag>();
+        public List<TicketTagModel> TicketTags { get; set; } = new List<TicketTagModel>();
         public List<ResponseModel> Responses { get; set; } = new List<ResponseModel>();
     }
 
-    public class TicketTag
+    public class TicketTagModel
     {
         public int TicketId { get; set; }
         public TicketModel Ticket { get; set; } = null!;

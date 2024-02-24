@@ -13,15 +13,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
+                <th>ID:</th>
+                <th>Rubrik:</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var ticket in viewModelTickets.OrderBy(t => t.Id))
             {
                 <tr>
-                    <td>@ticket.Id</td>
+                    <td><a href="@($"TicketDetail/{ticket.Id}")">@ticket.Id</a></td>
                     <td>@ticket.Title</td>
                 </tr>
             }

@@ -8,6 +8,9 @@ namespace App.Api.Controllers
     [ApiController]
     public class TicketController : Controller
     {
+        // API:ets "hjärna" som tar emot olika requests och mappar dem gentemot namnen nedan. 
+        // Controllern har ingen direktkontakt med databasen utan använder sig av repositories.
+
         private readonly AppDbContext _context;
         private readonly GenericRepo<TicketModel> _ticketRepo;
 
@@ -17,6 +20,18 @@ namespace App.Api.Controllers
             _ticketRepo = ticketRepo;
         }
 
+        [HttpGet("Ticket/{id}")]
+        public ActionResult<TicketModel> GetTicketById(int id)
+        {
+            var ticket = _ticketRepo.GetById(id);
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ticket);
+        }
 
         [HttpGet("Tickets")]
         public ActionResult<List<TicketModel>> GetTickets()
@@ -53,6 +68,8 @@ namespace App.Api.Controllers
 
             return NoContent();
         }
+
+
 
     }
 }

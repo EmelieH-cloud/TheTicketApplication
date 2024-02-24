@@ -8,6 +8,8 @@ namespace AppLogic.Services.TicketServices
 
         public Task<List<TicketAPIModel>> GetTickets();
 
+        public Task<TicketAPIModel> GetTicketById(int id);
+
         public Task PostTicket(TicketAPIModel ticket);
     }
 }
