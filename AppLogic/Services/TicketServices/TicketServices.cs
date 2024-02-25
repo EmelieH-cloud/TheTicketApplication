@@ -11,6 +11,8 @@ namespace AppLogic.Services.TicketServices
             BaseAddress = new Uri("https://localhost:7249/api/")
         };
 
+
+
         public async Task<TicketAPIModel> GetTicketById(int id)
         {
             var response = await Client.GetAsync($"Ticket/Ticket/{id}");
@@ -50,6 +52,7 @@ namespace AppLogic.Services.TicketServices
 
             throw new HttpRequestException();
         }
+
 
 
 

@@ -8,7 +8,9 @@ namespace AppLogic.Services.TagService
 
         public Task<List<TagModelAPIModel>> GetTags();
 
+
         public Task<TagModelAPIModel> GetTagbyId(int id);
+
 
         public Task PostTag(TagModelAPIModel tag);
     }

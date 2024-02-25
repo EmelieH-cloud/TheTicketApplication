@@ -11,6 +11,8 @@ namespace AppLogic.Services.TagService
             BaseAddress = new Uri("https://localhost:7249/api/")
         };
 
+
+
         public async Task<TagModelAPIModel> GetTagbyId(int id)
         {
 

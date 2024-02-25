@@ -1,7 +1,9 @@
 ﻿@page "/TicketDetail/{id:int}"
+@using AppLogic.Services.TagService
 @using Shared.Models
 @inject ITicketServices ticketService
 @using AppLogic.Services.TicketServices
+@inject ITagService tagservice
 @using Shared.Models.Shared.Models
 @using static Shared.Models.ApiModels
 
@@ -14,13 +16,22 @@
         <p><strong>Beskrivning:</strong> @ticket.Description</p>
     </div>
 
+    @if (viewModelTags.Any())
+    {
+        @foreach (var tag in viewModelTags)
+        {
+            <p>@tag.Name</p>
+        }
+    }
 
 }
+
 
 
 @code {
 
     TicketViewModel? ticket;
+    List<TagViewModel> viewModelTags = new();
 
     [Parameter]
     public int id { get; set; }
@@ -36,7 +47,26 @@
             // Omvandla API-modellen till en ViewModel 
             ticket = TicketViewModel.TicketViewModelFromApiModel(apiTicket);
 
-     
-        }  
+            // Försök hämta alla taggar med en HTTP-begäran till API:et 
+            var apiTags = await tagservice.GetTags();
+
+            // om det lyckades...
+            if (apiTags != null && apiTags.Any())
+            {
+                // ...Filtrera ut alla taggar med samma ticketID 
+                var tagsWithSameTicketId = apiTags.Where(tag => tag.Id == ticket.Id).ToList();
+
+                // konvertera dem till ViewModel
+                foreach (var tag in tagsWithSameTicketId)
+                {
+                    var viewModelTag = TagViewModel.TagViewModelFromApiModel(tag);
+
+                    // Lägg till i listan
+                    viewModelTags.Add(viewModelTag);
+                }
+            }
+
+        }
+
     }
 }
