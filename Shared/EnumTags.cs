@@ -24,15 +24,15 @@
         CloudComputing,
         AWS,
         Azure,
-        GCP, // Google Cloud Platform
+        GCP,
         DevOps,
-        CI_CD, // Continuous Integration / Continuous Deployment
+        CI_CD,
         Agile,
         Scrum,
         Security,
         Blockchain,
-        IoT, // Internet of Things
-        AR_VR, // Augmented Reality / Virtual Reality
+        IoT,
+        AR_VR,
         UI_UX,
         Algorithms,
         DataStructures,

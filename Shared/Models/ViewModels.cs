@@ -34,6 +34,16 @@
 
             public int Id { get; set; }
             public string Name { get; set; } = null!;
+
+            public static TagViewModel TagViewModelFromApiModel(TagModelAPIModel apiModel)
+            {
+                return new TagViewModel
+                {
+                    Id = apiModel.Id,
+                    Name = apiModel.Name,
+                };
+            }
+
         }
 
         public class TicketViewModel
@@ -46,7 +56,6 @@
             public bool IsResolved { get; set; }
             public string? Image { get; set; }
 
-            public List<string> TagNames { get; set; } = new List<string>();
 
             public List<ResponseModel> Responses { get; set; } = new();
 
@@ -56,7 +65,7 @@
             instansvariabler eller andra instansspecifika egenskaper för att fungera korrekt.
             */
 
-            //-------------------- Metoder som konverterar en API-modell till motsvarande viewmodel. 
+            //------- Metoder som konverterar API-modeller till motsvarande viewmodel. --------------
             public static TicketViewModel TicketViewModelFromApiModel(TicketAPIModel apiModel)
             {
                 return new TicketViewModel
@@ -70,14 +79,6 @@
                 };
             }
 
-            public static TagViewModel TagViewModelFromApiModel(TagModelAPIModel apiModel)
-            {
-                return new TagViewModel
-                {
-                    Id = apiModel.Id,
-                    Name = apiModel.Name,
-                };
-            }
 
 
 

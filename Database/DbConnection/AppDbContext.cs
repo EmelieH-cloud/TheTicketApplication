@@ -12,7 +12,7 @@ namespace Database.DbConnection
         }
 
         public DbSet<TicketModel> Tickets { get; set; }
-        public DbSet<TicketTag> TicketTag { get; set; }
+        public DbSet<TicketTagModel> TicketTag { get; set; }
         public DbSet<TagModel> Tags { get; set; }
         public DbSet<ResponseModel> Responses { get; set; }
 
@@ -20,17 +20,17 @@ namespace Database.DbConnection
         {
             // Konfigurera många-till-många relationen mellan TicketModel och TagModel.
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<TicketTag>()
+            modelBuilder.Entity<TicketTagModel>()
                 .HasKey(tt => new { tt.TicketId, tt.TagId });
 
             // Konfigurera många-till-en relationen mellan TicketModel och TicketTagModel.
-            modelBuilder.Entity<TicketTag>()
+            modelBuilder.Entity<TicketTagModel>()
                 .HasOne(tt => tt.Ticket)
                 .WithMany(t => t.TicketTags)
                 .HasForeignKey(tt => tt.TicketId);
 
             // Konfigurera många-till-en relationen mellan TagModel och TicketTagModel.
-            modelBuilder.Entity<TicketTag>()
+            modelBuilder.Entity<TicketTagModel>()
                 .HasOne(tt => tt.Tag)
                 .WithMany(t => t.TicketTags)
                 .HasForeignKey(tt => tt.TagId);

@@ -28,7 +28,7 @@
     protected override async Task OnInitializedAsync()
     {
 
-        // Hämta ticket-detaljer från API:et genom dess id 
+        // Hämta ticket-detaljer från API:et med id
         var apiTicket = await ticketService.GetTicketById(id);
 
         if (apiTicket != null)
@@ -36,7 +36,7 @@
             // Omvandla API-modellen till en ViewModel 
             ticket = TicketViewModel.TicketViewModelFromApiModel(apiTicket);
 
-           // to do: försök deserialisera tickettag model direkt 
+     
         }  
     }
 }

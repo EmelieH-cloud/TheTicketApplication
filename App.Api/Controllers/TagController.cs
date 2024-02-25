@@ -4,6 +4,8 @@ using Shared.Models;
 
 namespace App.Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TagController : Controller
     {
         private readonly AppDbContext _context;
@@ -17,21 +19,21 @@ namespace App.Api.Controllers
 
 
         [HttpGet("Tags")]
-        public ActionResult<List<TagModel>> GetTickets()
+        public ActionResult<List<TagModel>> GetTags()
         {
-            var tickets = _tagRepo.GetAll();
+            var tags = _tagRepo.GetAll();
 
-            return Ok(tickets);
+            return Ok(tags);
         }
 
 
 
-        [HttpPost("TicketTag")]
-        public ActionResult PostTicket(TagModel ticket)
+        [HttpPost("Tag")]
+        public ActionResult PostTag(TagModel tag)
         {
-            if (ticket != null)
+            if (tag != null)
             {
-                _tagRepo.Add(ticket);
+                _tagRepo.Add(tag);
                 return Ok();
             }
 
@@ -42,17 +44,30 @@ namespace App.Api.Controllers
 
 
         [HttpDelete("Tag/{id}")]
-        public ActionResult DeleteTicketTag(int id)
+        public ActionResult DeleteTag(int id)
         {
-            var ticket = _context.Tags.FirstOrDefault(x => x.Id == id);
+            var tag = _context.Tags.FirstOrDefault(x => x.Id == id);
 
-            if (ticket != null)
+            if (tag != null)
             {
                 _tagRepo.Delete(id);
-                return Ok(ticket);
+                return Ok(tag);
             }
 
             return NoContent();
+        }
+
+        [HttpGet("Tag/{id}")]
+        public ActionResult<TicketModel> GetTagById(int id)
+        {
+            var tag = _tagRepo.GetById(id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(tag);
         }
     }
 }

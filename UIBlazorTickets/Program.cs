@@ -1,4 +1,5 @@
 using AppLogic.Services.ResponseServices;
+using AppLogic.Services.TagService;
 using AppLogic.Services.TicketServices;
 
 using Microsoft.AspNetCore.Components.Web;
@@ -14,4 +15,5 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddScoped<ITicketServices, TicketServices>();
 builder.Services.AddScoped<IResponseService, ResponseService>();
+builder.Services.AddScoped<ITagService, TagService>();
 await builder.Build().RunAsync();

@@ -1,0 +1,44 @@
+﻿@page "/AllTags"
+@using AppLogic.Services.TagService
+@using Shared.Models.Shared.Models
+@inject ITagService tagservice 
+
+<h3>All Tags</h3>
+
+@if (viewModelTags != null && viewModelTags.Any())
+{
+    <ul>
+        @foreach (var tag in viewModelTags.OrderBy(t => t.Id))
+        {
+            <li>@tag.Name</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No tags found</p>
+}
+
+<a href="/Tickets">View Tickets</a>
+
+@code {
+    List<TagViewModel> viewModelTags = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Försök hämta alla taggar med HTTP-anropet från serviceklassen 
+        var apiTags = await tagservice.GetTags();
+
+        // Gör en viewmodel av varje tagg 
+        if (apiTags != null && apiTags.Any())
+        {
+            foreach (var apiModel in apiTags)
+            {
+                // Skapa en TagViewModel från TagModelAPIModel och lägg till i listan
+                var viewModel = TagViewModel.TagViewModelFromApiModel(apiModel);
+                viewModelTags.Add(viewModel);
+                
+            }
+        }
+    }
+}

@@ -21,12 +21,14 @@
             @foreach (var ticket in viewModelTickets.OrderBy(t => t.Id))
             {
                 <tr>
-                    <td><a href="@($"TicketDetail/{ticket.Id}")">@ticket.Id</a></td>
+                    <td>@ticket.Id</td>
                     <td>@ticket.Title</td>
+                    <td><a href="@($"TicketDetail/{ticket.Id}")">Se detaljer</a></td>
                 </tr>
             }
         </tbody>
     </table>
+    <a href="@($"AllTags")">Se taggar</a>
 }
 else
 {

@@ -4,7 +4,7 @@ namespace Database.DbConnection
 {
     public class GenericRepo<T> where T : class
     {
-        // Klass som har direktkontakt med databasen via dbcontext och returnerar data med hjälp av DbSet. 
+        // Klass som har direktkontakt med databasen via dbcontext och returnerar data med hjälp av ett DbSet. 
 
         private readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
