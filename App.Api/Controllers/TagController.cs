@@ -28,7 +28,7 @@ namespace App.Api.Controllers
 
 
 
-        [HttpPost("Tag")]
+        [HttpPost("PostTag")]
         public ActionResult PostTag(TagModel tag)
         {
             if (tag != null)

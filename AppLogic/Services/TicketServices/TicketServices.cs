@@ -58,7 +58,7 @@ namespace AppLogic.Services.TicketServices
 
         public async Task PostTicket(TicketAPIModel ticket)
         {
-            await Client.PostAsJsonAsync("tickets", ticket);
+            await Client.PostAsJsonAsync("Ticket/PostTicket", ticket);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace App.Api.Controllers
 
 
 
-        [HttpPost("Ticket")]
+        [HttpPost("PostTicket")]
         public ActionResult PostTicket(TicketModel ticket)
         {
             if (ticket != null)

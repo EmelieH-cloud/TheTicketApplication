@@ -59,7 +59,7 @@ namespace AppLogic.Services.TagService
 
         public async Task PostTag(TagModelAPIModel tag)
         {
-            await Client.PostAsJsonAsync("tags", tag);
+            await Client.PostAsJsonAsync("Tag/PostTag", tag);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Database.DbConnection
         public void Add(T entity)
         {
             _dbSet.Add(entity);
+            Complete();
         }
 
         // Delete model med ID
