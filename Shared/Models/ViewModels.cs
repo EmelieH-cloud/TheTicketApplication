@@ -6,7 +6,6 @@
     namespace Shared.Models
     {
 
-
         public class ResponseViewModel
         {
 
@@ -43,7 +42,6 @@
                     Name = apiModel.Name,
                 };
             }
-
         }
 
         public class TicketViewModel
@@ -55,7 +53,6 @@
             public string SubmittedBy { get; set; } = null!;
             public bool IsResolved { get; set; }
             public string? Image { get; set; }
-
 
             public List<ResponseModel> Responses { get; set; } = new();
 

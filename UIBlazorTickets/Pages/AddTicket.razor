@@ -8,7 +8,58 @@
 @using static Shared.Models.ApiModels
 
 
+<h3>Lägg till ny ticket</h3>
+
+<EditForm Model="@newTicket" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Title</label>
+        <InputText id="title" class="form-control" @bind-Value="newTicket.Title" />
+
+    </div>
+
+    <div class="form-group">
+        <label>Beskrivning</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="newTicket.Description" />
+
+    </div>
+
+    <div class="form-group">
+        <label>Inskickad av</label>
+        <InputText id="submittedBy" class="form-control" @bind-Value="newTicket.SubmittedBy" />
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Skapa ticket</button>
+</EditForm>
 
 @code {
- 
+    private TicketAPIModel newTicket { get; set; } = new TicketAPIModel();
+    private List<TagModelAPIModel>? allTags { get; set; } = new();
+    private List<int> selectedTags { get; set; } = new List<int>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        allTags = await tagservice.GetTags(); // Hämta alla taggar från tagService
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        // Lägg till de valda taggarna till ticketen
+        foreach (var tagId in selectedTags)
+        {
+            newTicket.TicketTags.Add(new TicketTagAPIModel { TagId = tagId });
+        }
+
+        // Skicka den nya ticket till ticketService för att skapa
+        await ticketService.PostTicket(newTicket);
+
+    }
+
+}
+
 }
